@@ -1,7 +1,6 @@
 package com.ks.wordsearchapi.services;
 
 import com.ks.wordsearchapi.enums.Direction;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -39,12 +38,6 @@ public class WordGridService {
         return contents;
     }
 
-    public void displayGrid(char[][] contents, int gridSize) {
-
-    }
-
-
-
     private void randomFileGrid(char[][] contents, int gridSize) {
         String allCapLetters = "ABSCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -78,7 +71,7 @@ public class WordGridService {
                 if (coordinate.y + wordLength > gridSize)
                     return false;
                 for (int i = 0; i < wordLength; i++) {
-                    if (contents[coordinate.x][coordinate.y + i] != '-')
+                    if (contents[coordinate.x][coordinate.y + i] != '-' && contents[coordinate.x][coordinate.y + i] != word.charAt(i))
                         return false;
                 }
                 break;
@@ -86,7 +79,7 @@ public class WordGridService {
                 if (coordinate.x + wordLength > gridSize)
                     return false;
                 for (int i = 0; i < wordLength; i++) {
-                    if (contents[coordinate.x + i][coordinate.y] != '-')
+                    if (contents[coordinate.x + i][coordinate.y] != '-' && contents[coordinate.x + i][coordinate.y] != word.charAt(i))
                         return false;
                 }
                 break;
@@ -94,7 +87,7 @@ public class WordGridService {
                 if (coordinate.y + wordLength > gridSize || coordinate.x + wordLength > gridSize)
                     return false;
                 for (int i = 0; i < wordLength; i++) {
-                    if (contents[coordinate.x + i][coordinate.y + i] != '-')
+                    if (contents[coordinate.x + i][coordinate.y + i] != '-' && contents[coordinate.x + i][coordinate.y + i] != word.charAt(i))
                         return false;
                 }
                 break;
@@ -102,7 +95,7 @@ public class WordGridService {
                 if (coordinate.y - wordLength < 0)
                     return false;
                 for (int i = 0; i < wordLength; i++) {
-                    if (contents[coordinate.x][coordinate.y - i] != '-')
+                    if (contents[coordinate.x][coordinate.y - i] != '-' && contents[coordinate.x][coordinate.y - i] != word.charAt(i))
                         return false;
                 }
                 break;
@@ -110,7 +103,7 @@ public class WordGridService {
                 if (coordinate.x - wordLength < 0)
                     return false;
                 for (int i = 0; i < wordLength; i++) {
-                    if (contents[coordinate.x - i][coordinate.y] != '-')
+                    if (contents[coordinate.x - i][coordinate.y] != '-' && contents[coordinate.x - i][coordinate.y ] != word.charAt(i))
                         return false;
                 }
                 break;
@@ -118,7 +111,7 @@ public class WordGridService {
                 if (coordinate.y - wordLength < 0 || coordinate.x - wordLength < 0)
                     return false;
                 for (int i = 0; i < wordLength; i++) {
-                    if (contents[coordinate.x - i][coordinate.y - i] != '-')
+                    if (contents[coordinate.x - i][coordinate.y - i] != '-' && contents[coordinate.x - i][coordinate.y - i] != word.charAt(i))
                         return false;
                 }
                 break;
